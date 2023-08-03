@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <section></section>
+    <script>
+        var sec=document.getElementsByTagName("section")[0];
+        var xml=new XMLHttpRequest();
+        xml.open("GET","https://raw.githubusercontent.com/2458955921/ajax/main/%E6%A6%82%E5%BF%B5/data.json");
+        xml.responseType="json";
+        xml.send();
+        xml.onreadystatechange=function(){
+            console.log(xml.readyState);
+            if(xml.readyState==4){
+                console.log(xml.status);
+            }
+        }
+
+        xml.onload=function(){
+            var date=xml.response;
+            var list=date["list"];
+            console.log(list);
+            for(var i=0;i<list.length;i++){
+                var Myarticle=document.createElement("article");
+                var ele1=document.createElement("p");
+                var ele2=document.createElement("p");
+                ele1.innerHTML=list[i].ming;
+                ele2.textContent=list[i].js;
+                Myarticle.appendChild(ele1);
+                Myarticle.appendChild(ele2);
+                sec.appendChild(Myarticle);
+
+
+            }
+        }
+
+    </script>
+</body>
+</html>
